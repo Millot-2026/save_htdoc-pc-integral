@@ -1,0 +1,167 @@
+{
+    "cms-2026-v8-full": "validated",
+    "user_journey-v1.0": "validated",
+    "skeletor-v1.0": "validated",
+    "personator-v1.2": "validated",
+    "texturor": "validated",
+    "dashboard-designer": "validated",
+    "mon-premier-site": "operational",
+    "modulor": "validated",
+    "palettor": "operational",
+    "presets": {
+        "preset_1": {
+            "spans": {
+                "dashboard-designer": "6",
+                "la-centrale": "6",
+                "cms-2026-v8-full": "6",
+                "palettor": "6",
+                "texturor": "6",
+                "wordpress-portable": "6",
+                "pixelart": "6",
+                ".firebase": "6",
+                "NETTOYAGE": "6",
+                "avator": "6",
+                "cardmakor-v1.0": "6",
+                "cv2027": "6",
+                "rootcase": "6",
+                "bear-col-block": "12"
+            },
+            "order": [
+                "dashboard-designer",
+                "la-centrale",
+                "cms-2026-v8-full",
+                "palettor",
+                "texturor",
+                "wordpress-portable",
+                "pixelart",
+                ".firebase",
+                "NETTOYAGE",
+                "avator",
+                "cardmakor-v1.0",
+                "cv2027",
+                "rootcase",
+                "bear-col-block"
+            ],
+            "hidden": {
+                "5": "wordpress-portable",
+                "7": ".firebase",
+                "8": "NETTOYAGE"
+            },
+            "name": "Preset 1"
+        },
+        "preset_2": {
+            "spans": {
+                "dashboard-designer": "6",
+                "la-centrale": "6",
+                "cms-2026-v8-full": "6",
+                "palettor": "6",
+                "texturor": "6",
+                "wordpress-portable": "6",
+                "pixelart": "6",
+                ".firebase": "6",
+                "NETTOYAGE": "6",
+                "avator": "6",
+                "cardmakor-v1.0": "6",
+                "cv2027": "6",
+                "rootcase": "6",
+                "skeletor-v1.0-o2switch": "6"
+            },
+            "order": [
+                "dashboard-designer",
+                "la-centrale",
+                "cms-2026-v8-full",
+                "palettor",
+                "texturor",
+                "wordpress-portable",
+                "pixelart",
+                ".firebase",
+                "NETTOYAGE",
+                "avator",
+                "cardmakor-v1.0",
+                "cv2027",
+                "rootcase",
+                "skeletor-v1.0-o2switch"
+            ],
+            "hidden": {
+                "5": "wordpress-portable",
+                "7": ".firebase",
+                "8": "NETTOYAGE",
+                "13": "skeletor-v1.0-o2switch"
+            },
+            "name": "Preset 2"
+        },
+        "preset_3": {
+            "spans": {
+                "dashboard-designer": "6",
+                "la-centrale": "6",
+                "cms-2026-v8-full": "6",
+                "palettor": "6",
+                "texturor": "6",
+                "wordpress-portable": "6",
+                "pixelart": "6",
+                ".firebase": "6",
+                "NETTOYAGE": "6",
+                "avator": "6",
+                "cardmakor-v1.0": "6",
+                "cv2027": "6",
+                "rootcase": "6"
+            },
+            "order": [
+                "dashboard-designer",
+                "la-centrale",
+                "cms-2026-v8-full",
+                "palettor",
+                "texturor",
+                "wordpress-portable",
+                "pixelart",
+                ".firebase",
+                "NETTOYAGE",
+                "avator",
+                "cardmakor-v1.0",
+                "cv2027",
+                "rootcase"
+            ],
+            "hidden": {
+                "7": ".firebase",
+                "8": "NETTOYAGE"
+            },
+            "name": "Preset 3"
+        }
+    },
+    "spans": {
+        "dashboard-designer": "6",
+        "la-centrale": "6",
+        "cms-2026-v8-full": "6",
+        "palettor": "6",
+        "texturor": "6",
+        "wordpress-portable": "6",
+        "pixelart": "6",
+        ".firebase": "6",
+        "NETTOYAGE": "6",
+        "avator": "6",
+        "cardmakor-v1.0": "6",
+        "cv2027": "6",
+        "rootcase": "6"
+    },
+    "order": [
+        "dashboard-designer",
+        "la-centrale",
+        "cms-2026-v8-full",
+        "palettor",
+        "texturor",
+        "wordpress-portable",
+        "pixelart",
+        ".firebase",
+        "NETTOYAGE",
+        "avator",
+        "cardmakor-v1.0",
+        "cv2027",
+        "rootcase"
+    ],
+    "hidden": {
+        "5": "wordpress-portable",
+        "7": ".firebase",
+        "8": "NETTOYAGE"
+    },
+    "active_preset": 1
+}

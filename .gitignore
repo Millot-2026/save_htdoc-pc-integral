@@ -1,0 +1,22 @@
+# --- Dossiers des applications (gérées dans leurs propres dépôts) ---
+/dashboard-designer/
+/texturor/
+/personator-v1.2/
+/skeletor-v1.0/
+/modulor/
+/cms-2026-v8-full/
+/mon-premier-site/
+/projet-client/
+/user_journey-v1.0/
+/wordpress-portable/
+
+# --- Dossiers d'export et builds ---
+/export/
+.firebase/
+
+# --- Fichiers système ou temporaires ---
+.DS_Store
+Thumbs.dbcardmakor-v1.0/ 
+_pixelart/ 
+la-centrale/ 
+cardmakor-v1.0/ 
