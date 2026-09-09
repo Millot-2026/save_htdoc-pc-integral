@@ -1239,7 +1239,18 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
                     <article class="news-article">
                         <div>
                             <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #111; padding-bottom: 4px; margin-bottom: 8px;">
-<h4 style="margin: 0; border: none; padding: 0; font-size: 1.25rem;"><?php echo htmlspecialchars(str_replace('-', ' ', $p['title']), ENT_QUOTES, 'UTF-8'); ?></h4>
+                                <h4 style="margin: 0; border: none; padding: 0; font-size: 1.25rem;">
+
+
+
+
+                                    <?php echo (in_array($p['name'], ['tagvisor', 'cv2027','rootcase',]) ? '✅ ' : '') . htmlspecialchars(str_replace('-', ' ', $p['title']), ENT_QUOTES, 'UTF-8'); ?>
+
+
+
+
+
+                                </h4>
                                 <span style="font-family: -apple-system, sans-serif; font-size: 0.65rem; text-transform: uppercase; color: #777;"><?php echo htmlspecialchars($p['sizeLabel'], ENT_QUOTES, 'UTF-8'); ?></span>
                             </div>
 

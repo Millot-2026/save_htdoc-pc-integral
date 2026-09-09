@@ -9,6 +9,8 @@
 /projet-client/
 /user_journey-v1.0/
 /wordpress-portable/
+/cardmakor-v1.0/
+/la-centrale/
 
 # --- Dossiers d'export et builds ---
 /export/
@@ -16,7 +18,5 @@
 
 # --- Fichiers système ou temporaires ---
 .DS_Store
-Thumbs.dbcardmakor-v1.0/ 
-_pixelart/ 
-la-centrale/ 
-cardmakor-v1.0/ 
+Thumbs.db
+desktop.ini
