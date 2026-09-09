@@ -24,6 +24,7 @@
                 "cardmakor-v1.0": "6",
                 "cv2027": "6",
                 "rootcase": "6",
+                "tagvisor": "12",
                 "bear-col-block": "12"
             },
             "order": [
@@ -40,6 +41,7 @@
                 "cardmakor-v1.0",
                 "cv2027",
                 "rootcase",
+                "tagvisor",
                 "bear-col-block"
             ],
             "hidden": {
@@ -141,7 +143,9 @@
         "avator": "6",
         "cardmakor-v1.0": "6",
         "cv2027": "6",
-        "rootcase": "6"
+        "rootcase": "6",
+        "tagvisor": "12",
+        "bear-col-block": "12"
     },
     "order": [
         "dashboard-designer",
@@ -156,7 +160,9 @@
         "avator",
         "cardmakor-v1.0",
         "cv2027",
-        "rootcase"
+        "rootcase",
+        "tagvisor",
+        "bear-col-block"
     ],
     "hidden": {
         "5": "wordpress-portable",

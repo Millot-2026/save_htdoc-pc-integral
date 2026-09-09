@@ -136,6 +136,7 @@ class TagParser {
         if (!res.lang.present) score -= 10;
         if (res.headings.counts.h1 !== 1) score -= 15;
         if (res.images.missingAlt > 0) score -= (res.images.missingAlt * 5);
+        if (!res.canonical.present) score -= 10;
 
         return Math.max(0, score);
     }

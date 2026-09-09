@@ -230,7 +230,13 @@ $editorialDescriptions = [
     'texturor' => "Boîte à outils dédiée au traitement typographique, à la gestion des interlignages et à l'optimisation de la lisibilité textuelle sur tous les supports d'affichage.",
     'user_journey-v1.0' => "Cartographie interactive des parcours clients et des flux de navigation. Un outil de pilotage stratégique pour anticiper chaque étape de l'expérience utilisateur.",
     'wordpress-portable' => "Environnement WordPress complètement virtualisé et autonome embarqué sur support amovible, garantissant un fonctionnement hors-ligne instantané.",
-    'pixelart' => "Studio créatif rétro-numérique pour la conception de graphismes pixelisés et d'éléments d'interface vintage au charme intemporel."
+    'pixelart' => "Studio créatif rétro-numérique pour la conception de graphismes pixelisés et d'éléments d'interface vintage au charme intemporel.",
+    'cv2027' => "Hub professionnel interactif et vitrine de compétences prospectives, taillé pour valoriser les réalisations et les objectifs de carrière avec une présentation moderne.",
+    'avator' => "Générateur et gestionnaire d'avatars et d'identités visuelles personnalisées pour identifier d'un coup d'œil les différents profils et modules de l'atelier.",
+    'rootcase' => "Module d'encapsulation et d'analyse des structures racines de projets, assurant une organisation rigoureuse de l'arborescence technique.",
+    'cardmakor-v1.0' => "Atelier de création et de mise en forme de cartes modulaires pour structurer l'information visuelle sous forme de blocs ergonomiques.",
+    'dashboard-designer' => "Cockpit central et tableau de bord ultime unifiant le pilotage du temps, la météo en direct et les outils de prototypage de l'atelier nomade.",
+    'tagvisor' => "Outil d'analyse, d'étiquetage et de supervision des métadonnées pour structurer proprement l'indexation de l'ensemble des contenus."
 ];
 
 $projectImages = [
@@ -249,6 +255,7 @@ $projectImages = [
     'avator' => 'accueil/capture-avator.png',
     'rootcase' => 'accueil/capture-rootcase.png',
     'cardmakor-v1.0' => 'accueil/capture-cardmakor-accueil.png',
+    'tagvisor' => 'accueil/logo-tagvisor.svg',
 ];
 
 $files = @scandir($dir);

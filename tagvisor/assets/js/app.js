@@ -8,14 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const folderTitle = document.getElementById('folder-title');
     const activeFileLabel = document.getElementById('active-file-label');
 
+    const serpUrl = document.getElementById('serp-display-url');
     const serpTitle = document.getElementById('serp-display-title');
     const serpDesc = document.getElementById('serp-display-desc');
     const metaMetrics = document.getElementById('meta-metrics');
     const structureMetrics = document.getElementById('structure-metrics');
     const a11yChecklist = document.getElementById('a11y-checklist');
     const globalScore = document.getElementById('global-score');
+    const brandLogo = document.querySelector('header h1');
 
     let currentFileHandle = null;
+    let currentFileName = 'page.html';
+    const fileScores = new Map();
 
     // Analyse en temps réel si modification manuelle dans le textarea
     htmlInput.addEventListener('input', () => {
@@ -30,8 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
             folderTitle.textContent = `Projet : ${dirHandle.name}`;
             fileList.innerHTML = '';
             fileExplorer.classList.remove('hidden');
+            fileScores.clear();
 
             await scanDirectory(dirHandle, fileList);
+            updateProjectBrandStatus();
         } catch (err) {
             console.log("Sélection de dossier annulée ou non supportée.", err);
         }
@@ -40,20 +46,49 @@ document.addEventListener('DOMContentLoaded', () => {
     async function scanDirectory(dirHandle, listEl) {
         for await (const entry of dirHandle.values()) {
             if (entry.kind === 'file' && entry.name.endsWith('.html')) {
+                const file = await entry.getFile();
+                const content = await file.text();
+                
+                // Pré-calcul du score pour chaque fichier du dossier
+                const tempParser = new TagParser(content);
+                fileScores.set(entry.name, tempParser.analyze().score);
+
                 const li = document.createElement('li');
-                li.textContent = entry.name;
+                li.textContent = `📄 ${entry.name}`;
                 li.addEventListener('click', async () => {
                     currentFileHandle = entry;
+                    currentFileName = entry.name;
                     activeFileLabel.textContent = `Fichier : ${entry.name}`;
-                    const file = await entry.getFile();
-                    const content = await file.text();
-                    htmlInput.value = content;
+                    serpUrl.textContent = `./${entry.name}`;
+                    const activeFile = await entry.getFile();
+                    const activeContent = await activeFile.text();
+                    htmlInput.value = activeContent;
                     updateCharCount();
-                    runAnalysis(content);
+                    runAnalysis(activeContent);
                     btnSaveFile.removeAttribute('disabled');
                 });
                 listEl.appendChild(li);
             }
+        }
+    }
+
+    function updateProjectBrandStatus() {
+        if (!brandLogo) return;
+        if (fileScores.size === 0) {
+            brandLogo.textContent = 'Tagvisor';
+            return;
+        }
+
+        const scores = Array.from(fileScores.values());
+        const allPerfect = scores.every(s => s === 100);
+        const hasCritical = scores.some(s => s < 80);
+
+        if (allPerfect) {
+            brandLogo.innerHTML = 'Tagvis<span style="color: #1abc58; font-weight: bold;">O</span>r';
+        } else if (hasCritical) {
+            brandLogo.innerHTML = 'Tagvis<span style="color: #ff0000; font-weight: bold;">O</span>r';
+        } else {
+            brandLogo.innerHTML = 'Tagvis<span style="color: #ff8800; font-weight: bold;">O</span>r';
         }
     }
 
@@ -64,6 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const writable = await currentFileHandle.createWritable();
             await writable.write(htmlInput.value);
             await writable.close();
+            
+            // Mise à jour du score du fichier dans la map globale
+            fileScores.set(currentFileName, new TagParser(htmlInput.value).analyze().score);
+            updateProjectBrandStatus();
             
             // Petit feedback visuel temporaire
             const originalText = btnSaveFile.textContent;
@@ -88,6 +127,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const parser = new TagParser(code);
         const res = parser.analyze();
 
+        // Met à jour le score du fichier courant dans la map globale en temps réel (si tapé à la main)
+        if (currentFileName) {
+            fileScores.set(currentFileName, res.score);
+            updateProjectBrandStatus();
+        }
+
+        serpUrl.textContent = currentFileName ? `./${currentFileName}` : '';
         serpTitle.textContent = res.title.text !== 'Aucun titre défini' ? res.title.text : 'Titre de la page (Title)';
         serpDesc.textContent = res.description.text !== 'Aucune description définie' ? res.description.text : 'La description de votre page apparaîtra ici...';
 
