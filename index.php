@@ -358,7 +358,7 @@ $exclude = [
             'colSpan' => (int)$colSpan,
             'colClass' => 'news-col-' . (int)$colSpan,
             'sizeLabel' => $sizeLabel,
-            'linkHref' => rawurlencode($file) . '/'
+            'linkHref' => rawurlencode($file) . '/' . $detailTarget
         ];
     }
 }
@@ -385,7 +385,7 @@ $projectsRaw['dashboard-designer'] = [
     'colSpan' => $wsSpan,
     'colClass' => 'news-col-' . $wsSpan,
     'sizeLabel' => 'SYSTEM',
-    'linkHref' => 'dashboard-designer/'
+    'linkHref' => 'dashboard-designer/detail.php'
 ];
 
 $orderedKeys = isset($savedConfig['order']) && is_array($savedConfig['order']) ? $savedConfig['order'] : [
@@ -1223,7 +1223,7 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
                         <div>
                             <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #111; padding-bottom: 4px; margin-bottom: 8px;">
                                 <h4 style="margin: 0; border: none; padding: 0; font-size: 1.25rem;">
-                                 <?php echo (in_array($p['name'], ['tagvisor', 'cv2027','rootcase','avator','texturor','palettor','pixelart']) ? '✅ ' : '') . htmlspecialchars(str_replace('-', ' ', $p['title']), ENT_QUOTES, 'UTF-8'); ?>
+              <?php echo (in_array($p['name'], ['dashboard-designer', 'tagvisor', 'cv2027','rootcase','avator','texturor','palettor','pixelart', 'cardmakor-v1.0']) ? '✅ ' : '') . htmlspecialchars(str_replace('-', ' ', $p['title']), ENT_QUOTES, 'UTF-8'); ?>
                                 </h4>
                                 <span style="font-family: -apple-system, sans-serif; font-size: 0.65rem; text-transform: uppercase; color: #777;"><?php echo htmlspecialchars($p['sizeLabel'], ENT_QUOTES, 'UTF-8'); ?></span>
                             </div>

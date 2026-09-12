@@ -23,10 +23,10 @@
                 "avator": "6",
                 "cardmakor-v1.0": "6",
                 "cv2027": "6",
+                "emailor": "6",
                 "rootcase": "6",
                 "tagvisor": "6",
-                "emailor": "6",
-                "bear-col-block": "12"
+                "bear-col-block": "6"
             },
             "order": [
                 "dashboard-designer",
@@ -41,9 +41,9 @@
                 "avator",
                 "cardmakor-v1.0",
                 "cv2027",
+                "emailor",
                 "rootcase",
                 "tagvisor",
-                "emailor",
                 "bear-col-block"
             ],
             "hidden": {
@@ -131,47 +131,6 @@
             },
             "name": "Preset 3"
         }
-    },
-    "spans": {
-        "dashboard-designer": "6",
-        "la-centrale": "6",
-        "cms-2026-v8-full": "6",
-        "palettor": "6",
-        "texturor": "6",
-        "wordpress-portable": "6",
-        "pixelart": "6",
-        ".firebase": "6",
-        "NETTOYAGE": "6",
-        "avator": "6",
-        "cardmakor-v1.0": "6",
-        "cv2027": "6",
-        "rootcase": "6",
-        "tagvisor": "6",
-        "emailor": "6",
-        "bear-col-block": "12"
-    },
-    "order": [
-        "dashboard-designer",
-        "la-centrale",
-        "cms-2026-v8-full",
-        "palettor",
-        "texturor",
-        "wordpress-portable",
-        "pixelart",
-        ".firebase",
-        "NETTOYAGE",
-        "avator",
-        "cardmakor-v1.0",
-        "cv2027",
-        "rootcase",
-        "tagvisor",
-        "emailor",
-        "bear-col-block"
-    ],
-    "hidden": {
-        "5": "wordpress-portable",
-        "7": ".firebase",
-        "8": "NETTOYAGE"
     },
     "active_preset": 1
 }

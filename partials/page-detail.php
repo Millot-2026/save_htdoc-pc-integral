@@ -1,40 +1,9 @@
 <?php
 /* ============================================================
    PARTIALS / PAGE-DETAIL.PHP — Template générique de détail
-   Variables attendues (définies par le fichier appelant) :
-   - $slug        (string)  : identifiant du projet, ex. 'la-centrale'
-   - $title       (string)  : titre affiché
-   - $subtitle    (string)  : sous-titre / accroche courte
-   - $pitch       (string)  : paragraphe HTML de présentation (lettre ornée)
-   - $technos     (array)   : liste de technologies, ex. ['PHP', 'JS']
-   - $statusKey   (string)  : 'operational' | 'validated' | 'progress'
-   - $screenshot  (string)  : chemin de l'image principale (relatif à la racine)
-   - $sections    (array)   : [['title'=>'...','body'=>'...','figure'=>'...'], ...]
-   - $isStatic    (bool)    : true → version HTML statique exportée
-   - $basePath    (string)  : '../' depuis {slug}/detail.php, ou chemin statique
-   - $appHref     (string)  : lien vers l'application réelle (CTA bas de page)
    ============================================================ */
 
-$slug        = 'dashboard-designer';
-$title       = 'Dashboard Designer';
-$subtitle    = 'Cockpit central et tableau de bord ultime pour l\'atelier nomade.';
-$pitch       = 'Véritable cockpit central et tableau de bord ultime, <strong>Dashboard Designer</strong> unifie le pilotage du temps, la météo en direct et les outils de prototypage de l\'atelier nomade. Conçu pour une maîtrise totale du flux de travail.';
-$technos     = ['PHP', 'JavaScript', 'CSS Custom'];
-$statusKey   = 'operational';
-$screenshot  = 'images/images-workstation/01-header.png';
-$basePath    = '../';
-$appHref     = 'dashboard-designer/';
-
-$sections = [
-    [
-        'title' => 'Architecture et Pilotage',
-        'figure' => 'images/images-workstation/01-header.png',
-        'figcaption' => 'Vue d\'ensemble du tableau de bord',
-        'body' => '<p>Le module centralise l\'ensemble des widgets de productivité dans une interface fluide, épurée et totalement indépendante des services cloud distants.</p><ul><li>Pilotage unifié du temps et des sessions.</li><li>Intégration météo en temps réel.</li><li>Outils de prototypage intégrés.</li></ul>'
-    ]
-];
-
-// ---- Sécurité : variables avec valeurs par défaut ----
+// ---- Sécurité : valeurs par défaut si non définies par la page appelante ----
 if (!isset($slug))      $slug       = '';
 if (!isset($title))     $title      = 'Projet';
 if (!isset($subtitle))  $subtitle   = '';
@@ -55,7 +24,7 @@ $badgeMap = [
 ];
 $badge = isset($badgeMap[$statusKey]) ? $badgeMap[$statusKey] : $badgeMap['operational'];
 
-// ---- Extension selon le mode (local vs export statique) ----
+// ---- Extension selon le mode ----
 $detailExt = $isStatic ? 'detail.html' : 'detail.php';
 
 // ---- Méga-menu : liste exhaustive des projets ----
@@ -63,23 +32,22 @@ $menuProjects = [
     'col1' => [
         ['dashboard-designer', 'Dashboard Designer'],
         ['la-centrale',        'la-centrale'],
-        ['cms-2026-v8-full', 'cms-2026-v8-full'],
+        ['cms-2026-v8-full',   'cms-2026-v8-full'],
     ],
     'col2' => [
-        ['palettor',         'palettor'],
-        ['modulor',          'modulor'],
-        ['texturor',         'texturor'],
-        ['personator-v1.2',  'personator-v1.2'],
-        ['pixelart',         'pixelart'],
-        ['user_journey-v1.0','user_journey-v1.0'],
+        ['palettor',           'palettor'],
+        ['modulor',            'modulor'],
+        ['texturor',           'texturor'],
+        ['personator-v1.2',    'personator-v1.2'],
+        ['pixelart',           'pixelart'],
+        ['user_journey-v1.0',  'user_journey-v1.0'],
     ],
     'col3' => [
-        ['skeletor-v1.0',    'skeletor-v1.0'],
-        ['wordpress-portable','wordpress-portable'],
+        ['skeletor-v1.0',      'skeletor-v1.0'],
+        ['wordpress-portable', 'wordpress-portable'],
     ],
 ];
 
-// ---- Chemins de navigation ----
 $indexHref = $basePath . ($isStatic ? 'index.html' : 'index.php');
 
 if (!function_exists('detailLink')) {
@@ -98,9 +66,6 @@ if (!function_exists('detailLink')) {
     <meta name="description" content="<?php echo htmlspecialchars($subtitle, ENT_QUOTES, 'UTF-8'); ?>">
 
     <style>
-        /* =========================================================================
-            CHARTE GRAPHIQUE — JOURNAL (identique à index.php)
-            ========================================================================= */
         :root {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
@@ -205,7 +170,8 @@ if (!function_exists('detailLink')) {
         .detail-pitch { font-size: 0.95rem; line-height: 1.65; text-align: justify; color: #333; margin: 0 0 22px 0; }
 
         .press-figure { margin: 0 0 20px 0; background: #fdfbf7; border: 1px solid #e2ddd5; padding: 8px; box-sizing: border-box; }
-        .press-figure img { width: 100%; height: auto; max-height: 260px; object-fit: contain; background: #f8fafc; display: block; border: 1px solid #dcd7ce; }
+        .press-figure picture { display: block; width: 100%; }
+        .press-figure img { width: 100%; height: auto; background: #f8fafc; display: block; border: 1px solid #dcd7ce; }
         .press-caption { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; margin-top: 6px; font-weight: bold; text-align: center; }
 
         .detail-section { border-top: 1px solid #e2ddd5; padding-top: 18px; margin-top: 18px; }
@@ -403,15 +369,38 @@ if (!function_exists('detailLink')) {
                     <?php if (!empty($section['title'])): ?>
                         <h3><?php echo htmlspecialchars($section['title'], ENT_QUOTES, 'UTF-8'); ?></h3>
                     <?php endif; ?>
-                    <?php if (!empty($section['figure'])): ?>
+                    
+                    <?php if (!empty($section['images'])): ?>
+                    <figure class="press-figure">
+                        <picture>
+                            <?php if (!empty($section['images']['desktop'])): ?>
+                            <source media="(min-width: 1024px)" srcset="<?php echo htmlspecialchars($basePath . $section['images']['desktop'], ENT_QUOTES, 'UTF-8'); ?>">
+                            <?php endif; ?>
+                            <?php if (!empty($section['images']['tablet'])): ?>
+                            <source media="(min-width: 768px)" srcset="<?php echo htmlspecialchars($basePath . $section['images']['tablet'], ENT_QUOTES, 'UTF-8'); ?>">
+                            <?php endif; ?>
+                            <?php
+                                $fallback = $section['images']['mobile'] ?? $section['images']['tablet'] ?? $section['images']['desktop'] ?? '';
+                                if ($fallback):
+                            ?>
+                            <img src="<?php echo htmlspecialchars($basePath . $fallback, ENT_QUOTES, 'UTF-8'); ?>"
+                                 alt="fig: <?php echo htmlspecialchars($section['figcaption'] ?? $section['title'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+                            <?php endif; ?>
+                        </picture>
+                        <figcaption class="press-caption">
+                            Fig. <?php echo ($i + 1); ?> — <?php echo htmlspecialchars($section['figcaption'] ?? $section['title'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
+                        </figcaption>
+                    </figure>
+                    <?php elseif (!empty($section['figure'])): ?>
                     <figure class="press-figure">
                         <img src="<?php echo htmlspecialchars($basePath . $section['figure'], ENT_QUOTES, 'UTF-8'); ?>"
                              alt="fig: <?php echo htmlspecialchars($section['figcaption'] ?? $section['title'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
                         <figcaption class="press-caption">
-                            Fig. <?php echo ($i + 2); ?> — <?php echo htmlspecialchars($section['figcaption'] ?? $section['title'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
+                            Fig. <?php echo ($i + 1); ?> — <?php echo htmlspecialchars($section['figcaption'] ?? $section['title'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
                         </figcaption>
                     </figure>
                     <?php endif; ?>
+                    
                     <?php if (!empty($section['body'])): ?>
                         <?php echo $section['body']; ?>
                     <?php endif; ?>
