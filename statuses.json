@@ -24,7 +24,8 @@
                 "cardmakor-v1.0": "6",
                 "cv2027": "6",
                 "rootcase": "6",
-                "tagvisor": "12",
+                "tagvisor": "6",
+                "emailor": "6",
                 "bear-col-block": "12"
             },
             "order": [
@@ -42,6 +43,7 @@
                 "cv2027",
                 "rootcase",
                 "tagvisor",
+                "emailor",
                 "bear-col-block"
             ],
             "hidden": {
@@ -144,7 +146,8 @@
         "cardmakor-v1.0": "6",
         "cv2027": "6",
         "rootcase": "6",
-        "tagvisor": "12",
+        "tagvisor": "6",
+        "emailor": "6",
         "bear-col-block": "12"
     },
     "order": [
@@ -162,6 +165,7 @@
         "cv2027",
         "rootcase",
         "tagvisor",
+        "emailor",
         "bear-col-block"
     ],
     "hidden": {

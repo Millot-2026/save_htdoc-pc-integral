@@ -235,27 +235,27 @@ $editorialDescriptions = [
     'avator' => "Générateur et gestionnaire d'avatars et d'identités visuelles personnalisées pour identifier d'un coup d'œil les différents profils et modules de l'atelier.",
     'rootcase' => "Module d'encapsulation et d'analyse des structures racines de projets, assurant une organisation rigoureuse de l'arborescence technique.",
     'cardmakor-v1.0' => "Atelier de création et de mise en forme de cartes modulaires pour structurer l'information visuelle sous forme de blocs ergonomiques.",
-    'dashboard-designer' => "Cockpit central et tableau de bord ultime unifiant le pilotage du temps, la météo en direct et les outils de prototypage de l'atelier nomade.",
+    'dashboard-designer' => "Cockpit central et tableau de bord ultime unifiant le pilotage du temps, la météo en direct et les outils de prototypage de l'atelier nomade. Conçu pour une maîtrise totale du flux de travail.",
     'tagvisor' => "Outil d'analyse, d'étiquetage et de supervision des métadonnées pour structurer proprement l'indexation de l'ensemble des contenus."
 ];
 
 $projectImages = [
-    'dashboard-designer' => 'accueil/capture-dashboard-designer-accueil.png',
-    'la-centrale' => 'accueil/capture-centrale.png',
-    'cms-2026-v8-full' => 'accueil/capture-cms-accueil.png',
-    'palettor' => 'accueil/capture-paletor-accueil.png',
-    'modulor' => 'accueil/capture-modulor.png',
-    'skeletor-v1.0' => 'accueil/capture-skeletor.png',
-    'personator-v1.2' => 'accueil/capture-personator-accueil.png',
-    'texturor' => 'accueil/capture-texturor-accueil.png',
-    'user_journey-v1.0' => 'accueil/capture-user-journey.png',
-    'wordpress-portable' => 'accueil/capture-wordpress.png',
-    'pixelart' => 'accueil/capture-pixelart.png',
-    'cv2027' => 'accueil/capture-hub-cv.png',
-    'avator' => 'accueil/capture-avator.png',
-    'rootcase' => 'accueil/capture-rootcase.png',
-    'cardmakor-v1.0' => 'accueil/capture-cardmakor-accueil.png',
-    'tagvisor' => 'accueil/logo-tagvisor.svg',
+    'dashboard-designer' => 'capture-dashboard-designer-accueil.png',
+    'la-centrale' => 'capture-centrale.png',
+    'cms-2026-v8-full' => 'capture-cms-accueil.png',
+    'palettor' => 'capture-paletor-accueil.png',
+    'modulor' => 'capture-modulor.png',
+    'skeletor-v1.0' => 'capture-skeletor-accueil.png',
+    'personator-v1.2' => 'capture-personator-accueil.png',
+    'texturor' => 'capture-texturor-accueil.png',
+    'user_journey-v1.0' => 'capture-user-journey.png',
+    'wordpress-portable' => 'capture-wordpress.png',
+    'pixelart' => 'capture-pixelart.png',
+    'cv2027' => 'capture-hub-cv.png',
+    'avator' => 'capture-avator.png',
+    'rootcase' => 'capture-rootcase.png',
+    'cardmakor-v1.0' => 'capture-cardmakor-accueil.png',
+    'tagvisor' => 'logo-tagvisor.svg',
 ];
 
 $files = @scandir($dir);
@@ -279,7 +279,7 @@ $exclude = [
         $isWP = file_exists($dir . '/' . $file . '/wp-config.php');
 
         $title = $file;
-        $lowerFile = mb_strtolower($file);
+        $lowerFile = trim(mb_strtolower($file));
         
         $customDetails = isset($projectsDetailsMap[$lowerFile]) ? $projectsDetailsMap[$lowerFile] : null;
 
@@ -289,10 +289,8 @@ $exclude = [
             $description = "Chronique et analyse technique approfondie du module " . htmlspecialchars($file, ENT_QUOTES, 'UTF-8') . ", développé dans le cadre de l'atelier de nomadisme numérique.";
         }
         
-        // --- CORRECTION DE LA LECTURE UNIVERSELLE DE L'IMAGE ---
         $imgName = 'photo-640x480.png';
         if (isset($projectImages[$lowerFile])) {
-            // Utilise l'image définie manuellement et extrait uniquement le nom du fichier (ignore les éventuels "accueil/")
             $imgName = basename($projectImages[$lowerFile]);
         } elseif ($customDetails) {
             if (isset($customDetails['image']) && !empty($customDetails['image'])) {
@@ -302,9 +300,10 @@ $exclude = [
             }
         }
         
-        $screenshot = 'images/accueil/' . $imgName;
+        // Utilisation du chemin absolu racine pour corriger définitivement le 404 sur les images
+        $screenshot = '/images/accueil/' . $imgName;
         if ($lowerFile === 'cms-2026-v8-full') {
-            $screenshot = 'images/accueil/capture-cms-accueil.png';
+            $screenshot = '/images/accueil/capture-cms-accueil.png';
         }
 
         $savedStatuses = isset($savedConfig['statuses']) ? $savedConfig['statuses'] : [];
@@ -337,11 +336,10 @@ $exclude = [
 
         $sizeLabel = ($colSpan === 12) ? 'CMS' : 'UX-UI';
 
-        // Détection du lien vers la page de détail du module
-        $detailTarget = '';
-        if (file_exists($dir . '/' . $file . '/detail.php')) {
-            $detailTarget = 'detail.php';
-        } elseif (file_exists($dir . '/' . $file . '/detail.html')) {
+        $detailTarget = 'detail.php';
+        if (defined('FIREBASE_STATIC') && FIREBASE_STATIC) {
+            $detailTarget = 'detail.html';
+        } elseif (file_exists($dir . '/' . $file . '/detail.html') && !file_exists($dir . '/' . $file . '/detail.php')) {
             $detailTarget = 'detail.html';
         }
 
@@ -360,7 +358,7 @@ $exclude = [
             'colSpan' => (int)$colSpan,
             'colClass' => 'news-col-' . (int)$colSpan,
             'sizeLabel' => $sizeLabel,
-            'linkHref' => rawurlencode($file) . '/' . $detailTarget
+            'linkHref' => rawurlencode($file) . '/'
         ];
     }
 }
@@ -372,7 +370,7 @@ $projectsRaw['dashboard-designer'] = [
     'hasIndex' => true,
     'isWP' => false,
     'description' => "Véritable cockpit central et tableau de bord ultime, Dashboard Designer unifie le pilotage du temps, la météo en direct et les outils de prototypage de l'atelier nomade. Conçu pour une maîtrise totale du flux de travail.",
-    'screenshot' => 'images/accueil/capture-dashboard-designer-accueil.png',
+    'screenshot' => '/images/accueil/capture-dashboard-designer-accueil.png',
     'statusKey' => 'operational',
     'badgeLabel' => '&#x1F7E0; Op&eacute;rationnel',
     'badgeClass' => 'badge badge-operational',
@@ -387,7 +385,7 @@ $projectsRaw['dashboard-designer'] = [
     'colSpan' => $wsSpan,
     'colClass' => 'news-col-' . $wsSpan,
     'sizeLabel' => 'SYSTEM',
-    'linkHref' => 'partials/page-detail-dashboard-designer.php'
+    'linkHref' => 'dashboard-designer/'
 ];
 
 $orderedKeys = isset($savedConfig['order']) && is_array($savedConfig['order']) ? $savedConfig['order'] : [
@@ -410,7 +408,6 @@ foreach ($projectsRaw as $extraP) {
     $projects[] = $extraP;
 }
 
-// Gestion du Colophon en tant qu'article standard
 $savedSpans = isset($savedConfig['spans']) ? $savedConfig['spans'] : [];
 $bearSpan = isset($savedSpans['bear-col-block']) ? (int)$savedSpans['bear-col-block'] : 6;
 
@@ -427,7 +424,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
 
    <title>
     <?php 
-    // Détection de l'environnement
     if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
         $env = "LOCAL";
     } elseif (strpos($_SERVER['REQUEST_URI'], '/export/firebase/') !== false) {
@@ -778,9 +774,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
         }
 
         <?php if (!$isExportMode): ?>
-        /* =========================================================================
-            CONTROL PANEL — Volet latéral escamotable
-           ========================================================================= */
         #cp-toggle-btn {
             position: fixed; bottom: 30px; right: 30px; z-index: 88888;
             width: 52px; height: 52px; border-radius: 50%; background: #2b2b2b;
@@ -872,7 +865,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
 
         .news-col-hidden { display: none !important; }
 
-        /* Marges totalement à 0 pour coller le haut de la page sur mobile portrait et paysage */
         @media (max-width: 1024px) and (orientation: portrait) {
             body {
                 margin-top: 0px !important;
@@ -934,7 +926,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
                 margin-top: 8px !important;
             }
 
-            /* Paragraphes alignés et justifiés à gauche dans les deux modes mobiles */
             .news-tribune p,
             .news-article p.news-pitch {
                 text-align: left !important;
@@ -957,7 +948,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
                 font-size: 3.4rem !important;
             }
 
-            /* Étirement complet des images sur toute la largeur de l'écran en mobile */
             .press-figure {
                 margin-left: -15px !important;
                 margin-right: -15px !important;
@@ -984,7 +974,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
                 font-weight: bold;
             }
 
-            /* Refonte du footer en mode mobile */
             .news-footer {
                 flex-direction: column !important;
                 gap: 8px !important;
@@ -1182,15 +1171,12 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
                     <button type="button" id="mega-menu-close">Fermer</button>
                 </div>
                 <?php
-                // Détermine l'extension des pages de détail selon le contexte (local vs export statique)
                 $detailPageExt = (defined('FIREBASE_STATIC') && FIREBASE_STATIC) ? 'detail.html' : 'detail.php';
-                // Liste des projets dans chaque colonne du menu (slug => label)
                 $menuCol1 = ['workstation' => 'Workstation', 'la-centrale' => 'la-centrale', 'cms-2026-v8-full' => 'cms-2026-v8-full'];
                 $menuCol2 = ['palettor' => 'palettor', 'modulor' => 'modulor', 'texturor' => 'texturor', 'personator-v1.2' => 'personator-v1.2', 'pixelart' => 'pixelart', 'user_journey-v1.0' => 'user_journey-v1.0'];
                 $menuCol3 = ['skeletor-v1.0' => 'skeletor-v1.0', 'wordpress-portable' => 'wordpress-portable'];
                 ?>
                 <div class="mega-menu-grid">
-                    <!-- Colonne 1 : Pilotage & Structure -->
                     <div class="mega-menu-col">
                         <h4>Pilotage &amp; Structure</h4>
                         <ul>
@@ -1199,7 +1185,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
                             <?php endforeach; ?>
                         </ul>
                     </div>
-                    <!-- Colonne 2 : Outils Créatifs & Design -->
                     <div class="mega-menu-col">
                         <h4>Outils Créatifs &amp; Design</h4>
                         <ul>
@@ -1208,7 +1193,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
                             <?php endforeach; ?>
                         </ul>
                     </div>
-                    <!-- Colonne 3 : Templates & Environnements -->
                     <div class="mega-menu-col">
                         <h4>Templates &amp; Environnements</h4>
                         <ul>
@@ -1227,7 +1211,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
             <p>« S'affranchir des infrastructures distantes pour recentrer le développement web sur l'essentiel : la maîtrise absolue du code, de l'octet initial jusqu'au déploiement final, au creux d'un support de poche inaltérable. »</p>
         </div>
 
-        <!-- GRILLE DES ARTICLES LÉGERS (GÉRÉE PAR LE CONTROL PANEL) -->
         <div class="news-grid-container" id="news-grid-container">
             <?php foreach ($projects as $p): ?>
                 <?php 
@@ -1240,16 +1223,7 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
                         <div>
                             <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #111; padding-bottom: 4px; margin-bottom: 8px;">
                                 <h4 style="margin: 0; border: none; padding: 0; font-size: 1.25rem;">
-
-
-
-
-                                    <?php echo (in_array($p['name'], ['tagvisor', 'cv2027','rootcase',]) ? '✅ ' : '') . htmlspecialchars(str_replace('-', ' ', $p['title']), ENT_QUOTES, 'UTF-8'); ?>
-
-
-
-
-
+                                 <?php echo (in_array($p['name'], ['tagvisor', 'cv2027','rootcase','avator','texturor','palettor','pixelart']) ? '✅ ' : '') . htmlspecialchars(str_replace('-', ' ', $p['title']), ENT_QUOTES, 'UTF-8'); ?>
                                 </h4>
                                 <span style="font-family: -apple-system, sans-serif; font-size: 0.65rem; text-transform: uppercase; color: #777;"><?php echo htmlspecialchars($p['sizeLabel'], ENT_QUOTES, 'UTF-8'); ?></span>
                             </div>
@@ -1293,7 +1267,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
         </div>
     </div>
 
-    <!-- CONTROL PANEL — CONSERVÉ ET TOTALEMENT FONCTIONNEL -->
     <?php if (!$isExportMode): ?>
     <button id="cp-toggle-btn" title="Control Panel — Affichage des projets" aria-label="Ouvrir le Control Panel" aria-expanded="false" aria-controls="control-panel">
         &#9776;
@@ -1367,7 +1340,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
             </div>
             <?php endforeach; ?>
 
-            <!-- Bloc Colophon géré comme un article dans le Control Panel -->
             <div style="font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #c0392b; border-bottom: 1px solid #e2ddd5; padding-bottom: 5px; margin: 15px 0 10px 0;">Bloc Colophon</div>
             <div class="cp-project-row" data-cp-row="bear-col-block">
                 <label class="cp-toggle" title="Afficher / masquer le Colophon">
@@ -1405,7 +1377,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
     </aside>
     <?php endif; ?>
 
-    <!-- JAVASCRIPT DE GESTION DU MENU ET DU CONTROL PANEL -->
     <script>
         window.addEventListener('orientationchange', function() {
             const resetScroll = () => {
@@ -1618,7 +1589,6 @@ $isExportMode = (isset($_GET['mode']) && $_GET['mode'] === 'export');
                 });
             }
 
-            // CONTROL PANEL LOGIC
             const cpToggleBtn = document.getElementById('cp-toggle-btn');
             const cpCloseBtn = document.getElementById('cp-close-btn');
             const cpBackdrop = document.getElementById('cp-backdrop');

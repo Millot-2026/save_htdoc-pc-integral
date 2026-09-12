@@ -5,8 +5,31 @@ class TagParser {
         this.doc = this.parser.parseFromString(this.html, 'text/html');
     }
 
+    isHtmlDocument() {
+        // Vérifie si le fichier contient une structure HTML minimale (DOCTYPE ou balise html)
+        const hasHtmlTag = !!this.doc.querySelector('html');
+        const hasDoctype = this.html.toLowerCase().includes('<!doctype');
+        return hasHtmlTag || hasDoctype;
+    }
+
     analyze() {
+        if (!this.isHtmlDocument()) {
+            // Fichier non-HTML (script back-end, API, données pures) : on renvoie un état neutre
+            return {
+                isHtml: false,
+                title: { text: 'Script Back-end (Non soumis au SEO)', length: 0, status: 'neutral', message: 'Ignoré' },
+                description: { text: 'Non applicable pour ce type de fichier', length: 0, status: 'neutral', message: 'Ignorée' },
+                viewport: { present: false, content: null },
+                lang: { present: false, lang: 'Non applicable' },
+                headings: { total: 0, counts: { h1: 0, h2: 0, h3: 0, h4: 0, h5: 0, h6: 0 }, list: [] },
+                images: { total: 0, missingAlt: 0 },
+                canonical: { present: false, href: null },
+                score: 100 // Score neutre non pénalisant pour les scripts techniques
+            };
+        }
+
         const results = {
+            isHtml: true,
             title: this.analyzeTitle(),
             description: this.analyzeDescription(),
             viewport: this.analyzeViewport(),

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function scanDirectory(dirHandle, listEl) {
         for await (const entry of dirHandle.values()) {
-            if (entry.kind === 'file' && entry.name.endsWith('.html')) {
+            if (entry.kind === 'file' && (entry.name.endsWith('.html') || entry.name.endsWith('.php'))) {
                 const file = await entry.getFile();
                 const content = await file.text();
                 
