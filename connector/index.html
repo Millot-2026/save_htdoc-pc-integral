@@ -201,12 +201,12 @@
 
         .actions {
             display: flex;
+            flex-direction: column;
             gap: 0.5rem;
             margin-top: 1rem;
         }
 
         .btn-action {
-            flex: 1;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -219,10 +219,21 @@
             border-radius: 8px;
             transition: background-color 0.15s;
             text-align: center;
+            width: 100%;
         }
 
         .btn-action:hover {
             background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--card-hover);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border);
         }
 
         .notes {
@@ -354,7 +365,7 @@
                             mich8332</span>
                         <span class="badge badge-green">Validé</span>
                     </div>
-                    <div class="card-subtitle">mich8332.odns.fr</div>
+                    <div class="card-subtitle">Hébergement Principal / Production</div>
 
                     <div class="info-group">
                         <div class="info-label">URL cPanel</div>
@@ -388,6 +399,8 @@
                 </div>
 
                 <div class="actions">
+                    <a href="https://mich8332.odns.fr" target="_blank" class="btn-action btn-secondary">Ouvrir le
+                        site</a>
                     <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
                 </div>
             </div>
@@ -400,7 +413,7 @@
                             sc1mich8332</span>
                         <span class="badge">cPanel Pool</span>
                     </div>
-                    <div class="card-subtitle">sc1mich8332.universe.wf</div>
+                    <div class="card-subtitle">Journal - Atelier Numérique 1</div>
 
                     <div class="info-group">
                         <div class="info-label">URL cPanel / Domaine</div>
@@ -427,55 +440,13 @@
                     </div>
 
                     <div class="notes">
-                        Objectif : Atelier Numérique - Projets et répertoires de test PHP.
+                        Objectif : Journal (Atelier Numérique) - Projets et répertoires de test PHP.
                     </div>
                 </div>
 
                 <div class="actions">
-                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
-                </div>
-            </div>
-
-            <!-- CARTE : Compte sc2mich8332 -->
-            <div class="card" data-search="sc2mich8332 pool o2switch net 2083">
-                <div>
-                    <div class="card-header">
-                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch">
-                            sc2mich8332</span>
-                        <span class="badge">cPanel Pool</span>
-                    </div>
-                    <div class="card-subtitle">sc2mich8332.universe.wf</div>
-
-                    <div class="info-group">
-                        <div class="info-label">URL cPanel / Domaine</div>
-                        <div class="info-row">
-                            <a href="https://pool.o2switch.net:2083" target="_blank">sc2mich8332.universe.wf</a>
-                            <button class="btn-copy" onclick="copyText('sc2mich8332.universe.wf')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Identifiant / Login</div>
-                        <div class="info-row">
-                            <span>sc2mich8332</span>
-                            <button class="btn-copy" onclick="copyText('sc2mich8332')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Mot de passe</div>
-                        <div class="info-row">
-                            <span>9Lq#v2Xk-8Wp$B4!z</span>
-                            <button class="btn-copy" onclick="copyText('9Lq#v2Xk-8Wp$B4!z')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="notes">
-                        Objectif : Atelier Numérique - Projets PHP.
-                    </div>
-                </div>
-
-                <div class="actions">
+                    <a href="https://sc1mich8332.universe.wf" target="_blank" class="btn-action btn-secondary">Ouvrir le
+                        site</a>
                     <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
                 </div>
             </div>
