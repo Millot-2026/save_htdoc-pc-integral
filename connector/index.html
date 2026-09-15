@@ -56,9 +56,16 @@
         h2 {
             font-size: 1.3rem;
             color: var(--text-main);
-            margin: 2rem 0 1rem 0;
+            margin: 2rem 0 0.5rem 0;
             padding-bottom: 0.5rem;
             border-bottom: 1px solid var(--border);
+        }
+
+        .section-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
         }
 
         .search-bar {
@@ -149,6 +156,11 @@
         .badge-green {
             background-color: rgba(16, 185, 129, 0.15);
             color: #10b981;
+        }
+
+        .badge-orange {
+            background-color: rgba(249, 115, 22, 0.15);
+            color: #f97316;
         }
 
         .info-group {
@@ -259,6 +271,8 @@
             placeholder="🔍 Rechercher un site, un domaine ou un identifiant..." onkeyup="filterCards()">
 
         <h2>Hébergement & Infrastructure o2switch</h2>
+        <p class="section-desc">Gestion administrative globale de l'offre d'hébergement, facturation et accès aux
+            webmails techniques de l'infrastructure.</p>
         <div class="grid" id="cardsGridO2">
 
             <!-- CARTE : Espace Client o2switch Principal -->
@@ -355,6 +369,8 @@
         </div>
 
         <h2>Mes lunes</h2>
+        <p class="section-desc">Comptes d'hébergement techniques (cPanel pool) dédiés à l'accueil du Journal (Atelier
+            Numérique) et de ses répertoires de test PHP.</p>
         <div class="grid" id="cardsGridLunes">
 
             <!-- CARTE : Compte mich8332 -->
@@ -453,8 +469,10 @@
 
         </div>
 
-        <h2>Applications & Projets Web</h2>
-        <div class="grid" id="cardsGridApps">
+        <h2>WordPress</h2>
+        <p class="section-desc">Accès exclusif au panneau d'administration du CMS WordPress principal et gestion de ses
+            identifiants de publication.</p>
+        <div class="grid" id="cardsGridWp">
 
             <!-- CARTE : WordPress (mich8332.odns.fr) -->
             <div class="card" data-search="wordpress cmillot2026 mich8332 odns fr wp admin">
@@ -463,7 +481,7 @@
                         <span class="card-title">WordPress</span>
                         <span class="badge badge-green">WordPress</span>
                     </div>
-                    <div class="card-subtitle">Gestion WordPress / Accès à l'admin</div>
+                    <div class="card-subtitle">CMS / Administration</div>
 
                     <div class="info-group">
                         <div class="info-label">URL Admin</div>
@@ -501,66 +519,89 @@
                 </div>
             </div>
 
-            <!-- CARTE : Site RootCase (o2switch) -->
-            <div class="card" data-search="rootcase o2switch odns fr mich8332">
+        </div>
+
+        <h2>Applications & Projets Web</h2>
+        <p class="section-desc">Applications web autonomes et scripts PHP spécifiques déployés dans les sous-dossiers de
+            l'Atelier Numérique (sc1).</p>
+        <div class="grid" id="cardsGridApps">
+
+            <!-- CARTE : Site RootCase (sc1) -->
+            <div class="card" data-search="rootcase sc1mich8332 universe wf">
                 <div>
                     <div class="card-header">
-                        <span class="card-title">RootCase (o2switch)</span>
-                        <span class="badge">Site Web</span>
+                        <span class="card-title">RootCase</span>
+                        <span class="badge badge-green">Site Web</span>
                     </div>
+                    <div class="card-subtitle">Boutique e-commerce</div>
 
                     <div class="info-group">
                         <div class="info-label">URL du site</div>
                         <div class="info-row">
-                            <a href="https://mich8332.odns.fr/rootcase" target="_blank">mich8332.odns.fr/rootcase</a>
+                            <a href="https://sc1mich8332.universe.wf/rootcase"
+                                target="_blank">sc1mich8332.universe.wf/rootcase</a>
                             <button class="btn-copy"
-                                onclick="copyText('https://mich8332.odns.fr/rootcase')">Copier</button>
+                                onclick="copyText('https://sc1mich8332.universe.wf/rootcase')">Copier</button>
                         </div>
                     </div>
 
                     <div class="info-group">
                         <div class="info-label">Identifiant / Login</div>
                         <div class="info-row">
-                            <span>mich8332</span>
-                            <button class="btn-copy" onclick="copyText('mich8332')">Copier</button>
+                            <span>sc1mich8332</span>
+                            <button class="btn-copy" onclick="copyText('sc1mich8332')">Copier</button>
                         </div>
                     </div>
 
                     <div class="notes">
-                        Objectif : Hébergement en ligne de l'application e-commerce / boutique RootCase synchronisée
-                        avec le dossier local XAMPP.
+                        Objectif : Hébergement en ligne de l'application e-commerce / boutique RootCase sur l'Atelier
+                        Numérique 1.
                     </div>
                 </div>
 
                 <div class="actions">
+                    <a href="https://sc1mich8332.universe.wf/rootcase" target="_blank"
+                        class="btn-action btn-secondary">Ouvrir le site</a>
                     <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
                 </div>
             </div>
 
-            <!-- CARTE : Site Emailor (o2switch) -->
-            <div class="card" data-search="emailor phpmailer o2switch mich8332">
+            <!-- CARTE : Site Emailor (sc1) -->
+            <div class="card" data-search="emailor phpmailer sc1mich8332 universe wf">
                 <div>
                     <div class="card-header">
                         <span class="card-title">Emailor</span>
-                        <span class="badge">Script PHP</span>
+                        <span class="badge badge-orange">Site Web</span>
                     </div>
+                    <div class="card-subtitle">Automatisation mailing</div>
 
                     <div class="info-group">
                         <div class="info-label">URL du site</div>
                         <div class="info-row">
-                            <a href="https://mich8332.odns.fr/emailor/" target="_blank">mich8332.odns.fr/emailor/</a>
+                            <a href="https://sc1mich8332.universe.wf/emailor/"
+                                target="_blank">sc1mich8332.universe.wf/emailor/</a>
                             <button class="btn-copy"
-                                onclick="copyText('https://mich8332.odns.fr/emailor/')">Copier</button>
+                                onclick="copyText('https://sc1mich8332.universe.wf/emailor/')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant / Login</div>
+                        <div class="info-row">
+                            <span>sc1mich8332</span>
+                            <button class="btn-copy" onclick="copyText('sc1mich8332')">Copier</button>
                         </div>
                     </div>
 
                     <div class="notes">
-                        Objectif : Script d'automatisation et d'envoi d'e-mails via PHPMailer avec hébergement des
-                        images statiques.
+                        Objectif : Script d'automatisation et d'envoi d'e-mails via PHPMailer hébergé sur l'Atelier
+                        Numérique 1.
                     </div>
                 </div>
 
                 <div class="actions">
+                    <a href="https://sc1mich8332.universe.wf/emailor/" target="_blank"
+                        class="btn-action btn-secondary">Ouvrir le site</a>
                     <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
                 </div>
             </div>
@@ -568,6 +609,8 @@
         </div>
 
         <h2>Sites GitHub Pages</h2>
+        <p class="section-desc">Versions de démonstration et portfolios hébergés publiquement sur GitHub Pages pour le
+            versioning distant et la présentation.</p>
         <div class="grid" id="cardsGridGithub">
 
             <!-- CARTE : GitHub - RootCase -->
