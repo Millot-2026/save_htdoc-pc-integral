@@ -107,9 +107,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             padding-bottom: 0.75rem;
             border-bottom: 1px solid var(--border);
+        }
+
+        .card-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
         }
 
         .card-title {
@@ -238,7 +247,7 @@
         <input type="text" id="searchInput" class="search-bar"
             placeholder="🔍 Rechercher un site, un domaine ou un identifiant..." onkeyup="filterCards()">
 
-        <h2>Hébergement o2switch & Sites sur serveur</h2>
+        <h2>Hébergement & Infrastructure o2switch</h2>
         <div class="grid" id="cardsGridO2">
 
             <!-- CARTE : Espace Client o2switch Principal -->
@@ -249,6 +258,7 @@
                             Client</span>
                         <span class="badge badge-green">Espace Client</span>
                     </div>
+                    <div class="card-subtitle">Gestion globale de l'hébergement</div>
 
                     <div class="info-group">
                         <div class="info-label">URL Espace Client</div>
@@ -285,51 +295,6 @@
                 </div>
             </div>
 
-            <!-- CARTE : WordPress (mich8332.odns.fr) -->
-            <div class="card" data-search="wordpress cmillot2026 mich8332 odns fr wp admin">
-                <div>
-                    <div class="card-header">
-                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch">
-                            WordPress</span>
-                        <span class="badge badge-green">WordPress</span>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">URL Admin</div>
-                        <div class="info-row">
-                            <a href="https://mich8332.odns.fr/wp-admin" target="_blank">mich8332.odns.fr/wp-admin</a>
-                            <button class="btn-copy"
-                                onclick="copyText('https://mich8332.odns.fr/wp-admin')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Identifiant WP</div>
-                        <div class="info-row">
-                            <span>cmillot2026</span>
-                            <button class="btn-copy" onclick="copyText('cmillot2026')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Mot de passe WP</div>
-                        <div class="info-row">
-                            <span>admin2026</span>
-                            <button class="btn-copy" onclick="copyText('admin2026')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="notes">
-                        Objectif : Site CMS WordPress principal hébergé sur mich8332.odns.fr pour les tests et la
-                        publication de contenus.
-                    </div>
-                </div>
-
-                <div class="actions">
-                    <a href="https://mich8332.odns.fr/wp-admin" target="_blank" class="btn-action">Ouvrir WordPress</a>
-                </div>
-            </div>
-
             <!-- CARTE : Webmail / Adresse e-mail (christophe@mich8332.odns.fr) -->
             <div class="card" data-search="christophe mich8332 odns fr webmail courriel email">
                 <div>
@@ -338,6 +303,7 @@
                             Webmail</span>
                         <span class="badge badge-green">E-mail</span>
                     </div>
+                    <div class="card-subtitle">Messagerie & E-mailing</div>
 
                     <div class="info-group">
                         <div class="info-label">URL Webmail</div>
@@ -372,6 +338,195 @@
 
                 <div class="actions">
                     <a href="https://pool.o2switch.net:2096" target="_blank" class="btn-action">Ouvrir Webmail</a>
+                </div>
+            </div>
+
+        </div>
+
+        <h2>Mes lunes</h2>
+        <div class="grid" id="cardsGridLunes">
+
+            <!-- CARTE : Compte mich8332 -->
+            <div class="card" data-search="mich8332 pool o2switch net 2083">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch">
+                            mich8332</span>
+                        <span class="badge badge-green">Validé</span>
+                    </div>
+                    <div class="card-subtitle">mich8332.odns.fr</div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL cPanel</div>
+                        <div class="info-row">
+                            <a href="https://pool.o2switch.net:2083" target="_blank">pool.o2switch.net:2083</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://pool.o2switch.net:2083')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant / Login</div>
+                        <div class="info-row">
+                            <span>mich8332</span>
+                            <button class="btn-copy" onclick="copyText('mich8332')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Mot de passe</div>
+                        <div class="info-row">
+                            <span>5ngk-7Fac-D8j+</span>
+                            <button class="btn-copy" onclick="copyText('5ngk-7Fac-D8j+')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Compte cPanel principal hébergeant les sous-domaines odns.fr, WordPress et les
+                        projets web de production.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
+                </div>
+            </div>
+
+            <!-- CARTE : Compte sc1mich8332 -->
+            <div class="card" data-search="sc1mich8332 pool o2switch net 2083">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch">
+                            sc1mich8332</span>
+                        <span class="badge">cPanel Pool</span>
+                    </div>
+                    <div class="card-subtitle">sc1mich8332.universe.wf</div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL cPanel / Domaine</div>
+                        <div class="info-row">
+                            <a href="https://pool.o2switch.net:2083" target="_blank">sc1mich8332.universe.wf</a>
+                            <button class="btn-copy" onclick="copyText('sc1mich8332.universe.wf')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant / Login</div>
+                        <div class="info-row">
+                            <span>sc1mich8332</span>
+                            <button class="btn-copy" onclick="copyText('sc1mich8332')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Mot de passe</div>
+                        <div class="info-row">
+                            <span>7Kp#m9Xv-2Rt$Q9!k</span>
+                            <button class="btn-copy" onclick="copyText('7Kp#m9Xv-2Rt$Q9!k')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Atelier Numérique - Projets et répertoires de test PHP.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
+                </div>
+            </div>
+
+            <!-- CARTE : Compte sc2mich8332 -->
+            <div class="card" data-search="sc2mich8332 pool o2switch net 2083">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch">
+                            sc2mich8332</span>
+                        <span class="badge">cPanel Pool</span>
+                    </div>
+                    <div class="card-subtitle">sc2mich8332.universe.wf</div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL cPanel / Domaine</div>
+                        <div class="info-row">
+                            <a href="https://pool.o2switch.net:2083" target="_blank">sc2mich8332.universe.wf</a>
+                            <button class="btn-copy" onclick="copyText('sc2mich8332.universe.wf')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant / Login</div>
+                        <div class="info-row">
+                            <span>sc2mich8332</span>
+                            <button class="btn-copy" onclick="copyText('sc2mich8332')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Mot de passe</div>
+                        <div class="info-row">
+                            <span>9Lq#v2Xk-8Wp$B4!z</span>
+                            <button class="btn-copy" onclick="copyText('9Lq#v2Xk-8Wp$B4!z')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Atelier Numérique - Projets PHP.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
+                </div>
+            </div>
+
+        </div>
+
+        <h2>Applications & Projets Web</h2>
+        <div class="grid" id="cardsGridApps">
+
+            <!-- CARTE : WordPress (mich8332.odns.fr) -->
+            <div class="card" data-search="wordpress cmillot2026 mich8332 odns fr wp admin">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">WordPress</span>
+                        <span class="badge badge-green">WordPress</span>
+                    </div>
+                    <div class="card-subtitle">Gestion WordPress / Accès à l'admin</div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL Admin</div>
+                        <div class="info-row">
+                            <a href="https://mich8332.odns.fr/wp-admin" target="_blank">mich8332.odns.fr/wp-admin</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://mich8332.odns.fr/wp-admin')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant WP</div>
+                        <div class="info-row">
+                            <span>cmillot2026</span>
+                            <button class="btn-copy" onclick="copyText('cmillot2026')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Mot de passe WP</div>
+                        <div class="info-row">
+                            <span>admin2026</span>
+                            <button class="btn-copy" onclick="copyText('admin2026')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Site CMS WordPress principal hébergé sur mich8332.odns.fr pour les tests et la
+                        publication de contenus.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://mich8332.odns.fr/wp-admin" target="_blank" class="btn-action">Ouvrir WordPress</a>
                 </div>
             </div>
 
@@ -441,142 +596,6 @@
 
         </div>
 
-        <h2>Mes lunes</h2>
-        <div class="grid" id="cardsGridLunes">
-
-            <!-- CARTE : Compte mich8332 -->
-            <div class="card" data-search="mich8332 pool o2switch net 2083">
-                <div>
-                    <div class="card-header">
-                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch"> logo +
-                            mich8332</span>
-                        <span class="badge badge-green">Validé</span>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">URL cPanel</div>
-                        <div class="info-row">
-                            <a href="https://pool.o2switch.net:2083" target="_blank">pool.o2switch.net:2083</a>
-                            <button class="btn-copy"
-                                onclick="copyText('https://pool.o2switch.net:2083')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Identifiant / Login</div>
-                        <div class="info-row">
-                            <span>mich8332</span>
-                            <button class="btn-copy" onclick="copyText('mich8332')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Mot de passe</div>
-                        <div class="info-row">
-                            <span>5ngk-7Fac-D8j+</span>
-                            <button class="btn-copy" onclick="copyText('5ngk-7Fac-D8j+')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="notes">
-                        Objectif : Compte cPanel principal hébergeant les sous-domaines odns.fr, WordPress et les
-                        projets web de production.
-                    </div>
-                </div>
-
-                <div class="actions">
-                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
-                </div>
-            </div>
-
-            <!-- CARTE : Compte sc1mich8332 -->
-            <div class="card" data-search="sc1mich8332 pool o2switch net 2083">
-                <div>
-                    <div class="card-header">
-                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch"> logo +
-                            sc1mich8332</span>
-                        <span class="badge">cPanel Pool</span>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">URL cPanel / Domaine</div>
-                        <div class="info-row">
-                            <a href="https://pool.o2switch.net:2083" target="_blank">sc1mich8332.universe.wf</a>
-                            <button class="btn-copy" onclick="copyText('sc1mich8332.universe.wf')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Identifiant / Login</div>
-                        <div class="info-row">
-                            <span>sc1mich8332</span>
-                            <button class="btn-copy" onclick="copyText('sc1mich8332')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Mot de passe</div>
-                        <div class="info-row">
-                            <span>7Kp#m9Xv-2Rt$Q9!k</span>
-                            <button class="btn-copy" onclick="copyText('7Kp#m9Xv-2Rt$Q9!k')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="notes">
-                        Objectif : Atelier Numérique - Projets et répertoires de test PHP.
-                    </div>
-                </div>
-
-                <div class="actions">
-                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
-                </div>
-            </div>
-
-            <!-- CARTE : Compte sc2mich8332 -->
-            <div class="card" data-search="sc2mich8332 pool o2switch net 2083">
-                <div>
-                    <div class="card-header">
-                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch"> logo +
-                            sc2mich8332</span>
-                        <span class="badge">cPanel Pool</span>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">URL cPanel / Domaine</div>
-                        <div class="info-row">
-                            <a href="https://pool.o2switch.net:2083" target="_blank">sc2mich8332.universe.wf</a>
-                            <button class="btn-copy" onclick="copyText('sc2mich8332.universe.wf')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Identifiant / Login</div>
-                        <div class="info-row">
-                            <span>sc2mich8332</span>
-                            <button class="btn-copy" onclick="copyText('sc2mich8332')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Mot de passe</div>
-                        <div class="info-row">
-                            <span>9Lq#v2Xk-8Wp$B4!z</span>
-                            <button class="btn-copy" onclick="copyText('9Lq#v2Xk-8Wp$B4!z')">Copier</button>
-                        </div>
-                    </div>
-
-                    <div class="notes">
-                        Objectif : Atelier Numérique - Projets PHP.
-                    </div>
-                </div>
-
-                <div class="actions">
-                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
-                </div>
-            </div>
-
-        </div>
-
         <h2>Sites GitHub Pages</h2>
         <div class="grid" id="cardsGridGithub">
 
@@ -584,7 +603,8 @@
             <div class="card" data-search="rootcase github io">
                 <div>
                     <div class="card-header">
-                        <span class="card-title">RootCase (GitHub)</span>
+                        <span class="card-title"><img src="images/github-icon-2.svg" alt="Logo GitHub"> RootCase
+                            (GitHub)</span>
                         <span class="badge badge-green">GitHub Pages</span>
                     </div>
 
@@ -609,7 +629,7 @@
             <div class="card" data-search="tagvisor github io">
                 <div>
                     <div class="card-header">
-                        <span class="card-title">Tagvisor</span>
+                        <span class="card-title"><img src="images/github-icon-2.svg" alt="Logo GitHub"> Tagvisor</span>
                         <span class="badge badge-green">GitHub Pages</span>
                     </div>
 
@@ -633,7 +653,7 @@
             <div class="card" data-search="cv2027 github io cv">
                 <div>
                     <div class="card-header">
-                        <span class="card-title">CV2027</span>
+                        <span class="card-title"><img src="images/github-icon-2.svg" alt="Logo GitHub"> CV2027</span>
                         <span class="badge badge-green">GitHub Pages</span>
                     </div>
 
@@ -657,7 +677,7 @@
             <div class="card" data-search="avator github io">
                 <div>
                     <div class="card-header">
-                        <span class="card-title">Avator</span>
+                        <span class="card-title"><img src="images/github-icon-2.svg" alt="Logo GitHub"> Avator</span>
                         <span class="badge badge-green">GitHub Pages</span>
                     </div>
 
