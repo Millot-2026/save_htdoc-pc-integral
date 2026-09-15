@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Mémo Hébergements & Sites</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --card-hover: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent: #0ea5e9;
+            --border: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 2rem 1rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 2rem auto;
+            display: block;
+            padding: 0.85rem 1.2rem;
+            font-size: 1rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-bar:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .badge {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+        }
+
+        .badge-green {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+
+        .info-group {
+            margin-bottom: 0.75rem;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(15, 23, 42, 0.4);
+            padding: 0.4rem 0.6rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .info-row a {
+            color: var(--accent);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .info-row a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-copy {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: color 0.15s, background-color 0.15s;
+        }
+
+        .btn-copy:hover {
+            color: var(--text-main);
+            background-color: var(--card-hover);
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-action {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            transition: background-color 0.15s;
+            text-align: center;
+        }
+
+        .btn-action:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .notes {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(0, 0, 0, 0.15);
+            padding: 0.5rem;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Mon Mémo o2switch & Sites</h1>
+            <p>Accès rapides, cPanel, identifiants et sous-domaines</p>
+        </header>
+
+        <input type="text" id="searchInput" class="search-bar"
+            placeholder="🔍 Rechercher un site, un domaine ou un identifiant..." onkeyup="filterCards()">
+
+        <h2>Hébergement o2switch & Sites sur serveur</h2>
+        <div class="grid" id="cardsGridO2">
+
+            <!-- CARTE : Espace Client o2switch Principal -->
+            <div class="card" data-search="espaces client o2switch cmillot 8SWUMDAvkdBmpY$k">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch"> Espace
+                            Client</span>
+                        <span class="badge badge-green">Espace Client</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL Espace Client</div>
+                        <div class="info-row">
+                            <a href="https://clients.o2switch.fr" target="_blank">clients.o2switch.fr</a>
+                            <button class="btn-copy" onclick="copyText('https://clients.o2switch.fr')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant Client</div>
+                        <div class="info-row">
+                            <span>cmillot</span>
+                            <button class="btn-copy" onclick="copyText('cmillot')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Mot de passe</div>
+                        <div class="info-row">
+                            <span>8SWUMDAvkdBmpY$k</span>
+                            <button class="btn-copy" onclick="copyText('8SWUMDAvkdBmpY$k')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Gestion globale de l'offre d'hébergement o2switch, renouvellements et factures (Code
+                        client : M1H1 5105).
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://clients.o2switch.fr" target="_blank" class="btn-action">Ouvrir Espace Client</a>
+                </div>
+            </div>
+
+            <!-- CARTE : WordPress (mich8332.odns.fr) -->
+            <div class="card" data-search="wordpress cmillot2026 mich8332 odns fr wp admin">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch">
+                            WordPress</span>
+                        <span class="badge badge-green">WordPress</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL Admin</div>
+                        <div class="info-row">
+                            <a href="https://mich8332.odns.fr/wp-admin" target="_blank">mich8332.odns.fr/wp-admin</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://mich8332.odns.fr/wp-admin')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant WP</div>
+                        <div class="info-row">
+                            <span>cmillot2026</span>
+                            <button class="btn-copy" onclick="copyText('cmillot2026')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Mot de passe WP</div>
+                        <div class="info-row">
+                            <span>admin2026</span>
+                            <button class="btn-copy" onclick="copyText('admin2026')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Site CMS WordPress principal hébergé sur mich8332.odns.fr pour les tests et la
+                        publication de contenus.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://mich8332.odns.fr/wp-admin" target="_blank" class="btn-action">Ouvrir WordPress</a>
+                </div>
+            </div>
+
+            <!-- CARTE : Webmail / Adresse e-mail (christophe@mich8332.odns.fr) -->
+            <div class="card" data-search="christophe mich8332 odns fr webmail courriel email">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch">
+                            Webmail</span>
+                        <span class="badge badge-green">E-mail</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL Webmail</div>
+                        <div class="info-row">
+                            <a href="https://pool.o2switch.net:2096" target="_blank">pool.o2switch.net:2096</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://pool.o2switch.net:2096')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Adresse E-mail / Login</div>
+                        <div class="info-row">
+                            <span>christophe@mich8332.odns.fr</span>
+                            <button class="btn-copy" onclick="copyText('christophe@mich8332.odns.fr')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Mot de passe</div>
+                        <div class="info-row">
+                            <span>kQpGsJG.-@)Vy{bm</span>
+                            <button class="btn-copy" onclick="copyText('kQpGsJG.-@)Vy{bm')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Boîte e-mail associée au domaine mich8332.odns.fr (Webmail via port 2096, non
+                        utilisable directement pour se logguer au cPanel).
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://pool.o2switch.net:2096" target="_blank" class="btn-action">Ouvrir Webmail</a>
+                </div>
+            </div>
+
+            <!-- CARTE : Site RootCase (o2switch) -->
+            <div class="card" data-search="rootcase o2switch odns fr mich8332">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">RootCase (o2switch)</span>
+                        <span class="badge">Site Web</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL du site</div>
+                        <div class="info-row">
+                            <a href="https://mich8332.odns.fr/rootcase" target="_blank">mich8332.odns.fr/rootcase</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://mich8332.odns.fr/rootcase')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant / Login</div>
+                        <div class="info-row">
+                            <span>mich8332</span>
+                            <button class="btn-copy" onclick="copyText('mich8332')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Hébergement en ligne de l'application e-commerce / boutique RootCase synchronisée
+                        avec le dossier local XAMPP.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
+                </div>
+            </div>
+
+            <!-- CARTE : Site Emailor (o2switch) -->
+            <div class="card" data-search="emailor phpmailer o2switch mich8332">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Emailor</span>
+                        <span class="badge">Script PHP</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL du site</div>
+                        <div class="info-row">
+                            <a href="https://mich8332.odns.fr/emailor/" target="_blank">mich8332.odns.fr/emailor/</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://mich8332.odns.fr/emailor/')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Script d'automatisation et d'envoi d'e-mails via PHPMailer avec hébergement des
+                        images statiques.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
+                </div>
+            </div>
+
+        </div>
+
+        <h2>Mes lunes</h2>
+        <div class="grid" id="cardsGridLunes">
+
+            <!-- CARTE : Compte mich8332 -->
+            <div class="card" data-search="mich8332 pool o2switch net 2083">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch"> logo +
+                            mich8332</span>
+                        <span class="badge badge-green">Validé</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL cPanel</div>
+                        <div class="info-row">
+                            <a href="https://pool.o2switch.net:2083" target="_blank">pool.o2switch.net:2083</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://pool.o2switch.net:2083')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant / Login</div>
+                        <div class="info-row">
+                            <span>mich8332</span>
+                            <button class="btn-copy" onclick="copyText('mich8332')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Mot de passe</div>
+                        <div class="info-row">
+                            <span>5ngk-7Fac-D8j+</span>
+                            <button class="btn-copy" onclick="copyText('5ngk-7Fac-D8j+')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Compte cPanel principal hébergeant les sous-domaines odns.fr, WordPress et les
+                        projets web de production.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
+                </div>
+            </div>
+
+            <!-- CARTE : Compte sc1mich8332 -->
+            <div class="card" data-search="sc1mich8332 pool o2switch net 2083">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch"> logo +
+                            sc1mich8332</span>
+                        <span class="badge">cPanel Pool</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL cPanel / Domaine</div>
+                        <div class="info-row">
+                            <a href="https://pool.o2switch.net:2083" target="_blank">sc1mich8332.universe.wf</a>
+                            <button class="btn-copy" onclick="copyText('sc1mich8332.universe.wf')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant / Login</div>
+                        <div class="info-row">
+                            <span>sc1mich8332</span>
+                            <button class="btn-copy" onclick="copyText('sc1mich8332')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Mot de passe</div>
+                        <div class="info-row">
+                            <span>7Kp#m9Xv-2Rt$Q9!k</span>
+                            <button class="btn-copy" onclick="copyText('7Kp#m9Xv-2Rt$Q9!k')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Atelier Numérique - Projets et répertoires de test PHP.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
+                </div>
+            </div>
+
+            <!-- CARTE : Compte sc2mich8332 -->
+            <div class="card" data-search="sc2mich8332 pool o2switch net 2083">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title"><img src="images/logo_o2switch.webp" alt="Logo o2switch"> logo +
+                            sc2mich8332</span>
+                        <span class="badge">cPanel Pool</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL cPanel / Domaine</div>
+                        <div class="info-row">
+                            <a href="https://pool.o2switch.net:2083" target="_blank">sc2mich8332.universe.wf</a>
+                            <button class="btn-copy" onclick="copyText('sc2mich8332.universe.wf')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Identifiant / Login</div>
+                        <div class="info-row">
+                            <span>sc2mich8332</span>
+                            <button class="btn-copy" onclick="copyText('sc2mich8332')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Mot de passe</div>
+                        <div class="info-row">
+                            <span>9Lq#v2Xk-8Wp$B4!z</span>
+                            <button class="btn-copy" onclick="copyText('9Lq#v2Xk-8Wp$B4!z')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Atelier Numérique - Projets PHP.
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="https://pool.o2switch.net:2083" target="_blank" class="btn-action">Ouvrir cPanel</a>
+                </div>
+            </div>
+
+        </div>
+
+        <h2>Sites GitHub Pages</h2>
+        <div class="grid" id="cardsGridGithub">
+
+            <!-- CARTE : GitHub - RootCase -->
+            <div class="card" data-search="rootcase github io">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">RootCase (GitHub)</span>
+                        <span class="badge badge-green">GitHub Pages</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL du site</div>
+                        <div class="info-row">
+                            <a href="https://millot-2026.github.io/rootcase/"
+                                target="_blank">millot-2026.github.io/rootcase/</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://millot-2026.github.io/rootcase/')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Version de démonstration publique de l'application RootCase déployée sur GitHub
+                        Pages.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARTE : GitHub - Tagvisor -->
+            <div class="card" data-search="tagvisor github io">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Tagvisor</span>
+                        <span class="badge badge-green">GitHub Pages</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL du site</div>
+                        <div class="info-row">
+                            <a href="https://millot-2026.github.io/tagvisor/"
+                                target="_blank">millot-2026.github.io/tagvisor/</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://millot-2026.github.io/tagvisor/')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Portfolio ou outil interactif Tagvisor hébergé sur GitHub Pages.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARTE : GitHub - CV2027 -->
+            <div class="card" data-search="cv2027 github io cv">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">CV2027</span>
+                        <span class="badge badge-green">GitHub Pages</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL du site</div>
+                        <div class="info-row">
+                            <a href="https://millot-2026.github.io/CV2027/"
+                                target="_blank">millot-2026.github.io/CV2027/</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://millot-2026.github.io/CV2027/')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Curriculum Vitae interactif en ligne orienté développeur front-end 2027.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARTE : GitHub - Avator -->
+            <div class="card" data-search="avator github io">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Avator</span>
+                        <span class="badge badge-green">GitHub Pages</span>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">URL du site</div>
+                        <div class="info-row">
+                            <a href="https://millot-2026.github.io/avator/"
+                                target="_blank">millot-2026.github.io/avator/</a>
+                            <button class="btn-copy"
+                                onclick="copyText('https://millot-2026.github.io/avator/')">Copier</button>
+                        </div>
+                    </div>
+
+                    <div class="notes">
+                        Objectif : Projet de génération ou gestion d'avatars en ligne sur GitHub Pages.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function filterCards() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const searchData = card.getAttribute('data-search').toLowerCase();
+                const textContent = card.innerText.toLowerCase();
+                if (searchData.includes(input) || textContent.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Feedback discret optionnel
+            });
+        }
+    </script>
+</body>
+
+</html>
