@@ -19,17 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Rattrapage absolu sur un titre si on est dans un bloc non fermé
             if (inCodeBlock && (/^#{1,6}\s*/.test(trimmedLine) || /^\d+[\.\)]\s*/.test(trimmedLine))) {
-                // Auto-clôture structurelle rigoureuse
-                while (braceCount > 0 || parenCount > 0) {
+                if (braceCount > 0 || parenCount > 0) {
                     let closingStr = '';
-                    if (braceCount > 0) {
+                    while (braceCount > 0) {
                         closingStr += '}';
                         braceCount--;
                     }
-                    if (parenCount > 0) {
+                    while (parenCount > 0) {
                         closingStr += ')';
                         parenCount--;
                     }
+                    // Injection unique et propre de la fermeture globale
                     processedLines.push('    ' + closingStr + ';');
                 }
                 processedLines.push('');
@@ -43,13 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Détection de la balise ```
             if (trimmedLine.startsWith('```')) {
                 if (inCodeBlock) {
-                    while (braceCount > 0 || parenCount > 0) {
+                    if (braceCount > 0 || parenCount > 0) {
                         let closingStr = '';
-                        if (braceCount > 0) {
+                        while (braceCount > 0) {
                             closingStr += '}';
                             braceCount--;
                         }
-                        if (parenCount > 0) {
+                        while (parenCount > 0) {
                             closingStr += ')';
                             parenCount--;
                         }
@@ -78,13 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Sécurité de fin de document
         if (inCodeBlock) {
-            while (braceCount > 0 || parenCount > 0) {
+            if (braceCount > 0 || parenCount > 0) {
                 let closingStr = '';
-                if (braceCount > 0) {
+                while (braceCount > 0) {
                     closingStr += '}';
                     braceCount--;
                 }
-                if (parenCount > 0) {
+                while (parenCount > 0) {
                     closingStr += ')';
                     parenCount--;
                 }
