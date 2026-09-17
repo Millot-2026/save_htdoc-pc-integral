@@ -18,17 +18,44 @@
     </header>
 
     <main class="app-main">
+        <!-- Panneau de gauche : Saisie et barre d'outils -->
         <div class="panel">
             <div class="panel-header">
                 <h2>Saisie Markdown brut</h2>
             </div>
+            
+            <div class="toolbar">
+                <div class="toolbar-group">
+                    <span class="toolbar-label">Mise en forme :</span>
+                    <button type="button" class="btn-tool" data-tag="h1">H1</button>
+                    <button type="button" class="btn-tool" data-tag="h2">H2</button>
+                    <button type="button" class="btn-tool" data-tag="h3">H3</button>
+                    <button type="button" class="btn-tool" data-tag="bold">Gras</button>
+                    <button type="button" class="btn-tool" data-tag="italic">Italique</button>
+                    <button type="button" class="btn-tool" data-tag="code">Code</button>
+                </div>
+                <div class="toolbar-group">
+                    <span class="toolbar-label">Structure & Blocs :</span>
+                    <button type="button" class="btn-tool" data-tag="list">Liste</button>
+                    <button type="button" class="btn-tool" data-tag="quote">Citation</button>
+                    <button type="button" class="btn-tool" data-tag="link">Lien</button>
+                    <button type="button" class="btn-tool" data-tag="table">Tableau</button>
+                    <button type="button" class="btn-tool" data-tag="php">PHP</button>
+                    <button type="button" class="btn-tool" data-tag="js">JS</button>
+                </div>
+            </div>
+
             <textarea id="markdownInput" placeholder="Collez votre Markdown brut ici..."></textarea>
         </div>
 
+        <!-- Panneau de droite : Résultat Nettoyé et bouton de switch -->
         <div class="panel">
             <div class="panel-header">
                 <h2>Markdown Nettoyé (Prêt pour VS Code)</h2>
-                <button id="copyBtn" class="btn btn-sm btn-info">Copier</button>
+                <div class="panel-actions">
+                    <button id="toggleViewBtn" class="btn btn-sm btn-secondary">👁️ Aperçu HTML</button>
+                    <button id="copyBtn" class="btn btn-sm btn-info">Copier</button>
+                </div>
             </div>
             <pre id="outputCode"><code></code></pre>
         </div>

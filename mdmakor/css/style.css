@@ -1,3 +1,7 @@
+/* =================================================================
+   Styles généraux et structure de l'application MdMakor
+   ============================================================== */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -40,6 +44,7 @@ body {
     gap: 0.75rem;
 }
 
+/* Boutons globaux */
 .btn {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
@@ -50,11 +55,15 @@ body {
     transition: background-color 0.2s;
 }
 
+.btn-sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+}
+
 .btn-primary {
     background-color: #d97706;
     color: #ffffff;
 }
-
 .btn-primary:hover {
     background-color: #b45309;
 }
@@ -63,7 +72,6 @@ body {
     background-color: #059669;
     color: #ffffff;
 }
-
 .btn-success:hover {
     background-color: #047857;
 }
@@ -72,11 +80,19 @@ body {
     background-color: #3b82f6;
     color: #ffffff;
 }
-
 .btn-info:hover {
     background-color: #2563eb;
 }
 
+.btn-secondary {
+    background-color: #64748b;
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: #475569;
+}
+
+/* Structure principale et panneaux */
 .app-main {
     max-width: 1400px;
     width: 100%;
@@ -116,9 +132,20 @@ body {
     font-size: 0.95rem;
     font-weight: 500;
     color: #94a3b8;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-textarea, pre {
+.panel-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Zone de saisie et affichage brut */
+textarea, pre, #outputCode {
     flex: 1;
     width: 100%;
     padding: 1rem;
@@ -132,7 +159,156 @@ textarea, pre {
     outline: none;
     white-space: pre-wrap;
     word-break: break-word;
+    margin: 0;
+    overflow-y: auto;
 }
+
+/* Barre d'outils et Boutons de formatage */
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 12px;
+    background-color: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid #334155;
+}
+
+.toolbar-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.toolbar-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-right: 4px;
+    letter-spacing: 0.5px;
+}
+
+.btn-tool {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-tool:hover {
+    background-color: #334155;
+    color: #ffffff;
+    border-color: #64748b;
+}
+
+.btn-tool:active {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+    color: #ffffff;
+}
+
+/* =================================================================
+   Styles pour l'Aperçu HTML (Fond Noir et Micro-fenêtres)
+   ============================================================== */
+
+.preview-html-container {
+    background-color: #000000 !important;
+    color: #f8fafc;
+    padding: 1.25rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.4;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.preview-html-container h1,
+.preview-html-container h2,
+.preview-html-container h3 {
+    color: #ffffff;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 0.2em;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.preview-html-container p {
+    margin-bottom: 0.4rem;
+}
+
+.preview-html-container ul {
+    padding-left: 1.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.preview-html-container blockquote {
+    padding: 0 0.75rem;
+    color: #94a3b8;
+    border-left: 0.25rem solid #334155;
+    margin: 0 0 0.4rem 0;
+}
+
+/* Micro-fenêtres de code sans arrondis */
+.code-micro-window {
+    background-color: #0D1117;
+    border: 1px solid #334155;
+    border-radius: 0;
+    margin: 1rem 0 1.25rem 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.code-micro-header {
+    background-color: #161b22;
+    padding: 8px 12px; /* Ajout d'espace vertical pour décaler le code du titre */
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #8b949e;
+    border-bottom: 1px solid #334155;
+    border-radius: 0;
+    margin: 0;
+}
+
+.code-micro-body {
+    padding: 6px 12px; /* Léger espacement haut/bas pour le corps du code */
+    margin: 0;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    color: #e6edf3;
+    background-color: #0D1117;
+}
+
+.code-micro-body pre {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    border: none;
+    line-height: 1.35;
+}
+
+.code-micro-body code {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+/* Coloration syntaxique */
+.token-keyword { color: #ff7b72; font-weight: bold; }
+.token-string { color: #a5d6ff; }
+.token-comment { color: #8b949e; font-style: italic; }
+.token-function { color: #d2a8ff; }
+
+/* =================================================================
+   Modale et Impression A4
+   ============================================================== */
 
 .modal-overlay {
     position: fixed;
@@ -196,14 +372,6 @@ textarea, pre {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 10pt;
     line-height: 1.5;
-}
-
-.btn-secondary {
-    background-color: #64748b;
-    color: white;
-}
-.btn-secondary:hover {
-    background-color: #475569;
 }
 
 @media print {
